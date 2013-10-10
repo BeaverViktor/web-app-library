@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block body %}
+{% from "_formhelpers.html" import render_field %}
+<h2>Sign up for Library for FREE!</h2>
+{% for error in errors %}
+  <p class=error><strong>Error:</strong> {{ error }}</p>
+{% endfor %}
+<form method=post action="{{ url_for('register') }}">
+  <dl>
+    {% for field in form %}
+      {{ render_field(field) }}
+    {% endfor %}
+  </dl>
+  <input type=submit value=Register>
+</form>
+{% endblock %}

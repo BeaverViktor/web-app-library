@@ -1,0 +1,38 @@
+<!doctype html>
+<head>
+  <meta charset=UTF-8>
+  <title>Library</title>
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class=page>
+  <div class=header>
+    <div>
+      <a href="{{ url_for('index') }}" id=logo>
+        <h1>Library</h1>
+      </a>
+    </div>
+    <div class=search>
+      <form action="{{ url_for('search') }}" method=post>
+        {{ g.search_form.query }}
+        {{ g.search_form.canon }}
+        <input type=submit value=Search>
+      </form>
+    </div>
+  </div>
+  <div class=metanav>
+    {% if session.user %}
+      <a href="{{ url_for('add_book') }}">add book</a> <span>|</span>
+      <a href="{{ url_for('add_author') }}">add author</a> <span>|</span>
+      <a href="{{ url_for('logout') }}">log out, {{ session.user }}</a>
+    {% else %}
+      <a href="{{ url_for('register') }}">register</a> <span>|</span>
+      <a href="{{ url_for('login') }}">login</a>
+    {% endif %}
+  </div>
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  <div class=main>{% block body %}{% endblock %}</div>
+</div>
+</body>

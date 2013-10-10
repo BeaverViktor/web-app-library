@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+<h2>All authors</h2>
+<ul>
+  {% for author in authors %}
+    <li>
+      <a href="{{ url_for('view_author', id=author.id) }}">{{ author.name }}</a>
+       - {{ author.books|count }} book(s).
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

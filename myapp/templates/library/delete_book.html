@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if error %}
+    <h2>Delete book</h2>
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% else %}
+    <h2>Delete book "{{ book.name }}"</h2>
+    <p>You are going to delete "{{ book.name }}" by
+      {% for author in book.authors %}
+        <a href="{{ url_for('view_author', id=author.id) }}">
+          {{ author.name }}
+        </a>{% if not loop.last %},{% endif %}
+      {% endfor %}</p>
+    <form action="{{ url_for('delete_book', id=book.id) }}" method=post>
+      <input type=submit value=Delete>
+    </form>
+  {% endif %}
+{% endblock %}

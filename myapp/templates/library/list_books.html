@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %}
+<h2>All books</h2>
+<ul>
+  {% for book in books %}
+    <li>
+      <a href="{{ url_for('view_book', id=book.id) }}">"{{ book.name }}"</a>
+      by
+      {% for author in book.authors %}
+        <a href="{{ url_for('view_author', id=author.id) }}">
+          {{ author.name }}
+        </a>{% if not loop.last %},{% endif %}
+      {% endfor %}
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

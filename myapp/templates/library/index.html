@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block body %}
+<h2>Welcome to the Library!</h2>
+<p>We have 
+  <a href="{{ url_for('view_book') }}">{{ books_amount }} books</a> by
+  <a href="{{ url_for('view_author') }}">{{ authors_amount }} authors</a>. 
+</p>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+{% from "_formhelpers.html" import render_field %}
+  <h2>Edit author {{ author.name }}</h2>
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% else %}
+    <form action="{{ url_for('edit_author', id=author.id) }}" method=post>
+      <dl>
+        {{ render_field(form.name) }}
+      </dl>
+      <input type=submit value=Edit>
+    </form>
+  {% endif %}
+{% endblock %}
